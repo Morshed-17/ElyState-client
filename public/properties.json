@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Liberty Village Community",
+    "location": "534 Jouett Ave, Jackson, MI 49201",
+    "image": "https://nh.rdcpix.com/3d1dc35548b61ebe6c1ffdd5b3b74fe9l-f1852683656od-w480_h360_x2.webp?w=640&q=75",
+    "agent_name": "Kazi Golam Morshed",
+    "agent_email": "morshedmto@gmail.com",
+    "verification": true,
+    "price": {
+      "start": 250000,
+      "end": 300000
+    }
+  },
+  {
+    "title": "Five Star Real Estate",
+    "location": "5330 Browns Lake Rd, Jackson, MI 49203",
+    "image": "https://ap.rdcpix.com/5076fbcd720a38eace7e450a4be61a0al-m3429987312od-w480_h360_x2.webp?w=640&q=75",
+    "agent_name": "Kazi Golam Morshed",
+    "agent_email": "morshedmto@gmail.com",
+    "verification": false,
+    "price": {
+      "start": 200000,
+      "end": 300000
+    }
+  }
+]
