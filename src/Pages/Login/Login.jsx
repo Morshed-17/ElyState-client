@@ -1,7 +1,31 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import GoogleLogin from "../../components/GoogleLogin/GoogleLogin";
+import toast from "react-hot-toast";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
+    const navigate = useNavigate();
+    const {signIn} = useAuth()
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        
+        console.log( email, password);
+        
+        signIn(email, password)
+          .then((res) => { 
+            console.log(res);
+            navigate('/')
+            toast.success("Logged in Successfully")
+          })
+          .catch((err) => {
+            console.log(err)
+            toast.error("Invalid Credentials")
+          });
+      };
+
   return (
     <div>
       <div className="hero h-screen">
@@ -11,7 +35,7 @@ const Login = () => {
            
           </div>
           <div className="card shrink- shadow-2xl bg-base-100 mt-6">
-            <form className="card-body">
+            <form onSubmit={handleSubmit} className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>

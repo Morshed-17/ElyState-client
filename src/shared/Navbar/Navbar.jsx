@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import Logo from "../Logo/Logo";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
@@ -71,9 +72,8 @@ const Navbar = () => {
               {navlinks}
             </ul>
           </div>
-          <Link>
-            <img src={logo} alt="" />
-          </Link>
+          {/* logo */}
+          <Logo/>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-lg font-semibold">

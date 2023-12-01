@@ -7,7 +7,7 @@ const NewsLetter = () => {
       <Container>
         <Heading title={"News Letter"}/>
       <div className="mx-auto   mt-6 ">
-        <div className="relative isolate overflow-hidden bg-slate-900  py-24 shadow-2xl  sm:px-24 xl:py-32">
+        <div className="relative isolate overflow-hidden bg-slate-900 px-6 py-24 shadow-2xl  sm:px-24 xl:py-32">
           <h2 className="mx-auto text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Keep Updated
           </h2>
