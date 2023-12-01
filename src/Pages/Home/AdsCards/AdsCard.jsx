@@ -16,7 +16,7 @@ const AdsCard = ({ property }) => {
         <p>{location}</p>
         <div className="card-actions justify-between">
         
-          <div className="flex">
+          <div className="flex font-semibold">
           <div className="">$ {price?.start}</div> - <div className="">{price?.end}</div> 
           </div>
           <button className="btn btn-sm">View Details</button>
