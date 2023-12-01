@@ -81,7 +81,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end text-lg font-semibold text-gray-600">
-          {user ? (
+          {user?.email ? (
             <div className="dropdown dropdown-end">
               <div
                 tabIndex={0}
@@ -93,6 +93,7 @@ const Navbar = () => {
                     alt="Tailwind CSS Navbar component"
                     src={user?.photoURL}
                   />
+                  
                 </div>
               </div>
               <ul

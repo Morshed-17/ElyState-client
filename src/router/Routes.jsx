@@ -20,7 +20,8 @@ const router = createBrowserRouter([
         },
         {
           path: 'all-properties',
-          element: <PrivateRoute></PrivateRoute>
+          element: <PrivateRoute><AllProperties/></PrivateRoute>,
+          loader: () => fetch('properties.json')
         }
         
       ]
