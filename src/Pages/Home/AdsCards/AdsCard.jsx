@@ -1,13 +1,13 @@
 const AdsCard = ({ property }) => {
     const {title, location, image, price, verification} = property || {}
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
-      <figure>
+    <div className="card max-w-96 bg-base-100 border rounded-none">
+      
         <img
           src={image}
           alt="Shoes"
         />
-      </figure>
+      
       <div className="card-body">
         <h2 className="card-title">
         {title}

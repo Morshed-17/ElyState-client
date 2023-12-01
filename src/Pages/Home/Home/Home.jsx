@@ -1,5 +1,8 @@
 import AdsCards from "../AdsCards/AdsCards";
-import Banner from "../Banner/Banner";
+import Banner from "../../../components/Banner/Banner";
+import Reviews from "../Reviews/Reviews";
+import ImageSection from "../ImageSection/ImageSection";
+import NewsLetter from "../NewsLetter/NewsLetter";
 
 
 
@@ -7,8 +10,11 @@ import Banner from "../Banner/Banner";
 const Home = () => {
     return (
         <div>
-            <Banner/>
+            <Banner title="Search Your Next Home" subTitle="Find new & featured property located in your local city."/>
             <AdsCards/>
+            <Reviews/>
+            <ImageSection/>
+            <NewsLetter/>
         </div>
     );
 };
