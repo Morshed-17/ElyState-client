@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import GoogleLogin from "../../components/GoogleLogin/GoogleLogin";
 
 const Login = () => {
   return (
@@ -17,6 +18,7 @@ const Login = () => {
                 </label>
                 <input
                   type="email"
+                  name="email"
                   placeholder="email"
                   className="input input-bordered"
                   required
@@ -27,6 +29,7 @@ const Login = () => {
                   <span className="label-text">Password</span>
                 </label>
                 <input
+                    name="password"
                   type="password"
                   placeholder="password"
                   className="input input-bordered"
@@ -37,9 +40,9 @@ const Login = () => {
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
               </div>
-              <p>Already Have an Account? <Link to='/signup' className="btn btn-sm btn-link mt-3"> Sign Up</Link></p>
+              <p>Don't Have an account? <Link to='/signup' className="btn btn-sm btn-link mt-3"> Sign Up</Link></p>
             </form>
-            
+            <GoogleLogin/>
           </div>
         </div>
       </div>
