@@ -2,15 +2,25 @@ import { useEffect, useState } from "react";
 import Container from "../../../components/Container/Container";
 import Heading from "../../../components/Heading/Heading";
 import AdsCard from "./AdsCard";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Loading from "../../../components/Loading/Loading";
 
 const AdsCards = () => {
-
+    const axiosSecure = useAxiosSecure()
     const [properties, setProperties] = useState([])
-    useEffect( () => {
-        fetch('properties.json')
-        .then(res => res.json())
-        .then(data => setProperties(data))
-    }, [] )
+    const [loading, setLoading] = useState(false)
+    useEffect(()=> {
+      setLoading(true)
+      axiosSecure('/properties')
+      .then(res => {
+        setProperties(res.data)
+        setLoading(false)
+      })
+    }, [axiosSecure])
+    
+    if(loading){
+      return <Loading/>
+    }
 
   return (
     <div className="mt-12">

@@ -8,6 +8,8 @@ import AllProperties from "../Pages/AllProperties/AllProperties";
 import PrivateRoute from "./PrivateRoute";
 import PropertyDetails from "../Pages/PropertyDetails/PropertyDetails";
 import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import MyProfile from "../Pages/Dashboard/pages/MyProfile/MyProfile";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +28,6 @@ const router = createBrowserRouter([
             <AllProperties />
           </PrivateRoute>
         ),
-        loader: () => fetch("properties.json"),
       },
       {
         path: "property/:id",
@@ -35,11 +36,18 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: 'dashboard',
-    element: <PrivateRoute><Dashboard/></PrivateRoute>,
+    path: "dashboard",
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
     children: [
-      
-    ]
+      {
+        path: 'my-profile',
+        element: <MyProfile/>
+      }
+    ],
   },
   {
     path: "login",

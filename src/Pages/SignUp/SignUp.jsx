@@ -2,10 +2,12 @@ import { Link, useNavigate } from "react-router-dom";
 import GoogleLogin from "../../components/GoogleLogin/GoogleLogin";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const SignUp = () => {
     const navigate = useNavigate();
     const {createUser, updateUserProfile} = useAuth()
+    const axiosSecure = useAxiosSecure()
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -14,6 +16,11 @@ const SignUp = () => {
         const password = form.password.value;
         const photo = form.photo.value;
         console.log(name, email, password, photo);
+        const user = {
+          name,
+          email,
+          role: 'Guest'
+        }
         if (password.length < 6) {
           return toast.error("Password must be 6 Charecters");
         }
@@ -27,7 +34,11 @@ const SignUp = () => {
           .then((res) => {
             updateUserProfile(name, photo)
               .then((res) => {
+                
                 console.log(res);
+                axiosSecure.put(`users/${email}` , user)
+                .then(res => console.log(res.data))
+                
                 toast.success("Account Created Successfuly");
                 navigate("/");
               })

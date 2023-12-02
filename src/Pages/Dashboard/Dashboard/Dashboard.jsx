@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import Container from "../../../components/Container/Container";
 import Logo from "../../../shared/Logo/Logo";
 import Menu from "../Menu/Menu";
@@ -12,9 +12,13 @@ const Dashboard = () => {
             <Logo />
             <Menu />
           </div>
-          <Link to='/' className="btn"><FaHome/> Go back Home</Link>
+          <Link to="/" className="btn">
+            <FaHome /> Go back Home
+          </Link>
         </div>
-        <div className="bg-green-50 col-span-12 md:col-span-9"></div>
+        <div className="bg-green-50 col-span-12 md:col-span-9 py-12 px-12">
+          <Outlet/>
+        </div>
       </div>
     </Container>
   );

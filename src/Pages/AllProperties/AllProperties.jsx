@@ -1,11 +1,21 @@
 import Banner from "../../components/Banner/Banner";
 import banner1 from "../../assets/banner1.jpg";
-import { useLoaderData } from "react-router-dom";
+
 import Container from "../../components/Container/Container";
 import Card from "./Card";
+import { useEffect, useState } from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AllProperties = () => {
-  const properties = useLoaderData();
+  const axiosSecure = useAxiosSecure()
+  const [properties, setProperties] = useState([])
+
+  useEffect(()=> {
+    axiosSecure('/properties')
+    .then(res => setProperties(res.data))
+  }, [])
+  
+  
 
   return (
     <div>

@@ -1,49 +1,45 @@
+import { useEffect, useState } from "react";
+import AdminMenu from "./AdminMenu";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAuth from "../../../hooks/useAuth";
+import GuestMenu from "./GuestMenu";
+import AgentMenu from "./AgentMenu";
 import { NavLink } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
-import { IoIosListBox } from "react-icons/io";
-import { BsBuildingCheck } from "react-icons/bs";
-import { MdReviews } from "react-icons/md";
+
 const Menu = () => {
+  const axiosSecure = useAxiosSecure()
+  const [role, setRole] = useState(null)
+  const {user} = useAuth()
+  useEffect(()=> {
+    axiosSecure(`/user?email=${user?.email}`)
+    .then(res => setRole(res.data.role))
+
+  }, [])
   return (
     <div className="mt-4">
+      <h3 className="text-xl mb-4 font-semibold">Role: {role && role}</h3>
       <ul className="menu  w-full gap-3">
-        <li className="bg-white rounded-lg text-lg font-semibold">
+      <li className="bg-white rounded-lg text-lg font-semibold">
+      
           <NavLink
-            to="/dashboard/myprofile"
+            to="/dashboard/my-profile"
             className={({ isActive }) => (isActive ? "active" : "")}
           >
             <CgProfile />
             My Profile
           </NavLink>
         </li>
-        <li className="bg-white rounded-lg text-lg font-semibold">
-          <NavLink
-            to="/dashboard/wishlist"
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            <IoIosListBox/>
-            Wishlist
-          </NavLink>
-        </li>
-        <li className="bg-white rounded-lg text-lg font-semibold">
-          <NavLink
-            to="/dashboard/bought"
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            <BsBuildingCheck/>
-            Prperty Bought
-          </NavLink>
-        </li>
-        <li className="bg-white rounded-lg text-lg font-semibold">
-          <NavLink
-            to="/dashboard/my-reviews"
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            <MdReviews/>
-            My Reviews
-          </NavLink>
-        </li>
       </ul>
+        {
+          role === "Guest" && <GuestMenu/>
+        }
+        {
+          role === "Agent" && <AgentMenu/>
+        }
+        {
+          role === "Admin" && <AdminMenu/>
+        }
     </div>
   );
 };

@@ -2,16 +2,27 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Container from "../../components/Container/Container";
 import { GrFormLocation } from "react-icons/gr";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Loading from "../../components/Loading/Loading";
 
 
 const PropertyDetails = () => {
   const { id } = useParams();
   const [property, setProperty] = useState({});
-  useEffect(() => {
-    fetch("/properties.json")
-      .then((res) => res.json())
-      .then((data) => setProperty(data.find((property) => property._id == id)));
-  }, [id]);
+  const axiosSecure = useAxiosSecure()
+  const [loading, setLoading] = useState(false)
+  
+
+  useEffect(()=> {
+    setLoading(true)
+    axiosSecure(`/property/${id}`)
+    .then(res => 
+      {
+        setProperty(res.data)
+        setLoading(false)
+      })
+  }, [id, axiosSecure])
+  
 
   const {
     _id,
@@ -25,6 +36,9 @@ const PropertyDetails = () => {
     description,
   } = property || {};
 
+  if(loading){
+    return <Loading/>
+  }
   return (
     <div className="mt-12  max-w-5xl mx-auto ">
       <Container>
