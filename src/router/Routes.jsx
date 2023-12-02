@@ -10,6 +10,7 @@ import PropertyDetails from "../Pages/PropertyDetails/PropertyDetails";
 import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import MyProfile from "../Pages/Dashboard/pages/MyProfile/MyProfile";
+import AddProperty from "../Pages/Dashboard/pages/AddProperty/AddProperty";
 
 const router = createBrowserRouter([
   {
@@ -46,7 +47,11 @@ const router = createBrowserRouter([
       {
         path: 'my-profile',
         element: <MyProfile/>
-      }
+      },
+      {
+        path: 'add-property',
+        element: <AddProperty/>
+      },
     ],
   },
   {
