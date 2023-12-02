@@ -1,6 +1,7 @@
 import { GrFormLocation } from "react-icons/gr";
+import { Link } from "react-router-dom";
 const Card = ({ property }) => {
-  const { title, location, image, price, verification, agent_name, agent_image } = property || {};
+  const { _id,title, location, image, price, verification, agent_name, agent_image } = property || {};
   return (
     <div className="card max-w-96 bg-base-100 border rounded-none">
       <img src={image} alt="Shoes" />
@@ -19,7 +20,7 @@ const Card = ({ property }) => {
             <div className="">$ {price?.start}</div> -{" "}
             <div className="">{price?.end}</div>
           </div>
-          <button className="btn btn-sm">View Details</button>
+          <Link to={`/property/${_id}`} className="btn btn-sm btn-outline">View Details</Link>
         </div>
         <div className="card-actions justify-start items-center">
           <img className="avatar h-[40px] rounded-full" src={agent_image} alt="" />

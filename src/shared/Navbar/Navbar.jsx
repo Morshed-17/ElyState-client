@@ -1,5 +1,4 @@
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../assets/logo.png";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import Logo from "../Logo/Logo";

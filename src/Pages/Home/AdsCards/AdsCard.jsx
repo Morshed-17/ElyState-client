@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
+
 const AdsCard = ({ property }) => {
-    const {title, location, image, price, verification} = property || {}
+    const {_id,title, location, image, price, verification} = property || {}
   return (
     <div className="card max-w-96 bg-base-100 border rounded-none">
       
@@ -19,7 +21,7 @@ const AdsCard = ({ property }) => {
           <div className="flex font-semibold">
           <div className="">$ {price?.start}</div> - <div className="">{price?.end}</div> 
           </div>
-          <button className="btn btn-sm">View Details</button>
+          <Link to={`/property/${_id}`} className="btn btn-sm btn-outline">View Details</Link>
         </div>
       </div>
     </div>

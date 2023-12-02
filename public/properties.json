@@ -1,8 +1,10 @@
 [
   {
+    "_id": 1,
     "title": "Liberty Village Community",
     "location": "534 Jouett Ave, Jackson, MI 49201",
     "image": "https://nh.rdcpix.com/3d1dc35548b61ebe6c1ffdd5b3b74fe9l-f1852683656od-w480_h360_x2.webp?w=640&q=75",
+    "description": "Welcome to a contemporary oasis in the bustling heart of the city! This exquisite two-bedroom apartment seamlessly combines modern design with functionality, offering a lifestyle of comfort and convenience.",
     "agent_name": "Kazi Golam Morshed",
     "agent_email": "morshedmto@gmail.com",
     "agent_image": "https://avatars.githubusercontent.com/u/120186837?v=4",
@@ -13,9 +15,11 @@
     }
   },
   {
+    "_id": 2,
     "title": "Five Star Real Estate",
     "location": "5330 Browns Lake Rd, Jackson, MI 49203",
     "image": "https://ap.rdcpix.com/5076fbcd720a38eace7e450a4be61a0al-m3429987312od-w480_h360_x2.webp?w=640&q=75",
+    "description": "Welcome to a contemporary oasis in the bustling heart of the city! This exquisite two-bedroom apartment seamlessly combines modern design with functionality, offering a lifestyle of comfort and convenience.",
     "agent_name": "Kazi Golam Morshed",
     "agent_email": "morshedmto@gmail.com",
     "agent_image": "https://avatars.githubusercontent.com/u/120186837?v=4",
