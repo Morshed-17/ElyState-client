@@ -8,6 +8,9 @@ const AddedProperties = () => {
     const [properties] = useMyAdded()
     console.log(properties?.data);
     
+    if(properties?.data.length === 0){
+        return <h3 className="text-3xl text-center">You have not Added any properties yet</h3>
+    }
     return (
         <div>
             <Heading title="My Added Properties"/>

@@ -13,6 +13,7 @@ import MyProfile from "../Pages/Dashboard/pages/MyProfile/MyProfile";
 import AddProperty from "../Pages/Dashboard/pages/AddProperty/AddProperty";
 import AddedProperties from "../Pages/Dashboard/pages/AddedProperties/AddedProperties";
 import UpdateProperty from "../Pages/Dashboard/pages/UpdateProperty/UpdateProperty";
+import ManageProperties from "../Pages/Dashboard/pages/ManageProperties/ManageProperties";
 
 const router = createBrowserRouter([
   {
@@ -47,20 +48,48 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: 'my-profile',
-        element: <PrivateRoute><MyProfile/></PrivateRoute>
+        path: '/dashboard',
+        element: <h1>Hello Navigate through the menu to see content !</h1>
       },
       {
-        path: 'add-property',
-        element: <PrivateRoute><AddProperty/></PrivateRoute>
+        path: "my-profile",
+        element: (
+          <PrivateRoute>
+            <MyProfile />
+          </PrivateRoute>
+        ),
       },
       {
-        path: 'added-properties',
-        element: <PrivateRoute><AddedProperties/></PrivateRoute>
+        path: "add-property",
+        element: (
+          <PrivateRoute>
+            <AddProperty />
+          </PrivateRoute>
+        ),
       },
       {
-        path: 'property/:id',
-        element: <PrivateRoute><UpdateProperty/></PrivateRoute>
+        path: "added-properties",
+        element: (
+          <PrivateRoute>
+            <AddedProperties />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "property/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateProperty />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "manage-property",
+        element: (
+          <PrivateRoute>
+            <ManageProperties />
+          </PrivateRoute>
+        ),
       },
     ],
   },

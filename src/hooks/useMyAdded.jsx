@@ -7,7 +7,7 @@ const useMyAdded = () => {
     const {user} = useAuth()
     const axiosSecure = useAxiosSecure();
     const { data: properties, isLoading, refetch} = useQuery({
-        queryKey: ['properties'],
+        queryKey: ['my-properties'],
         queryFn: () => axiosSecure(`/properties?email=${user?.email}`)
       })
 
