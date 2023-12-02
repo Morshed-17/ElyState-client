@@ -11,6 +11,8 @@ import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import MyProfile from "../Pages/Dashboard/pages/MyProfile/MyProfile";
 import AddProperty from "../Pages/Dashboard/pages/AddProperty/AddProperty";
+import AddedProperties from "../Pages/Dashboard/pages/AddedProperties/AddedProperties";
+import UpdateProperty from "../Pages/Dashboard/pages/UpdateProperty/UpdateProperty";
 
 const router = createBrowserRouter([
   {
@@ -46,11 +48,19 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'my-profile',
-        element: <MyProfile/>
+        element: <PrivateRoute><MyProfile/></PrivateRoute>
       },
       {
         path: 'add-property',
-        element: <AddProperty/>
+        element: <PrivateRoute><AddProperty/></PrivateRoute>
+      },
+      {
+        path: 'added-properties',
+        element: <PrivateRoute><AddedProperties/></PrivateRoute>
+      },
+      {
+        path: 'property/:id',
+        element: <PrivateRoute><UpdateProperty/></PrivateRoute>
       },
     ],
   },

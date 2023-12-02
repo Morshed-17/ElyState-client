@@ -1,13 +1,24 @@
-
-import Heading from "../../../../components/Heading/Heading";
-import useAuth from "../../../../hooks/useAuth";
-import { imageUpload } from "../../../../utils/utils";
-import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import Heading from "../../../../components/Heading/Heading";
+import { imageUpload } from "../../../../utils/utils";
+import useAuth from "../../../../hooks/useAuth";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-const AddProperty = () => {
-    const axiosSecure = useAxiosSecure()
+const UpdateProperty = () => {
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
+  const {id} = useParams()
+  const [property, setProperty] = useState({})
+
+  useEffect(() => {
+    axiosSecure(`/property/${id}`)
+    .then(res => setProperty(res.data))
+  }, [axiosSecure, id])
+  
+  const { _id,title,description, location, image, price, verification, agent_name, agent_image } = property || {};
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -22,34 +33,26 @@ const AddProperty = () => {
     const imageData = await imageUpload(image);
     console.log(imageData);
 
-    const property = {
+    const updatedProperty = {
       title: title,
       location: location,
       image: imageData?.data?.display_url,
       description: description,
-      agent_name: user?.displayName,
-      agent_email: user?.email,
-      agent_image: user?.photoURL,
-      verification: "Pending",
       price: {
         start: parseFloat(minPrice),
         end: parseFloat(maxPrice),
       },
-    }
-    axiosSecure.post('/properties', property)
-    .then(res => {
-        toast.success("Property added successfully")
-    })
-    
-
-    
-
+    };
+    axiosSecure.put(`/property/${_id}`, updatedProperty).then((res) => {
+      toast.success("Property Updated successfully");
+    });
   };
   return (
     <div>
-      <Heading title="Add Property" />
+      <Heading title="Update Property" />
 
       <div>
+     
         <div className="hero ">
           <div className="hero-content flex-col ">
             <div className="card shrink-0 shadow-2xl  bg-base-100 mt-6">
@@ -61,6 +64,7 @@ const AddProperty = () => {
                   <input
                     type="text"
                     name="title"
+                    defaultValue={title}
                     placeholder="Title"
                     className="input input-bordered"
                     required
@@ -72,6 +76,7 @@ const AddProperty = () => {
                   </label>
                   <input
                     type="text"
+                    defaultValue={location}
                     name="location"
                     placeholder="Location"
                     className="input input-bordered"
@@ -96,6 +101,7 @@ const AddProperty = () => {
                   </label>
                   <textarea
                     name="description"
+                    defaultValue={description}
                     className="input input-bordered h-fit"
                     required
                   />
@@ -109,6 +115,7 @@ const AddProperty = () => {
                     <input
                       name="agentName"
                       type="text"
+
                       defaultValue={user?.email}
                       className="input input-bordered"
                       disabled
@@ -137,6 +144,7 @@ const AddProperty = () => {
                     <input
                       name="minPrice"
                       type="number"
+                      defaultValue={price?.start}
                       placeholder="number"
                       className="input input-bordered"
                       required
@@ -149,6 +157,7 @@ const AddProperty = () => {
                     <input
                       name="maxPrice"
                       type="number"
+                      defaultValue={price?.end}
                       placeholder="number"
                       className="input input-bordered"
                       required
@@ -156,7 +165,7 @@ const AddProperty = () => {
                   </div>
                 </div>
                 <div className="form-control mt-6">
-                  <button className="btn btn-primary">Add</button>
+                  <button className="btn btn-primary">Update</button>
                 </div>
               </form>
             </div>
@@ -167,4 +176,4 @@ const AddProperty = () => {
   );
 };
 
-export default AddProperty;
+export default UpdateProperty;
