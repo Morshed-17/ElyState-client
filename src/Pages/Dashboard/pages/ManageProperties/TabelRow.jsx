@@ -1,6 +1,8 @@
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
-const TabelRow = ({ property }) => {
+const TabelRow = ({ property, refetch }) => {
+  const axiosSecure = useAxiosSecure();
   const {
     _id,
     title,
@@ -14,9 +16,16 @@ const TabelRow = ({ property }) => {
   } = property || {};
 
   const handleVerify = () => {
-    
-    toast.success("Property verified ")
-  }
+    const status = {
+      verification: "Verified",
+    };
+    axiosSecure.patch(`/property/${_id}`, status).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        toast.success("Property verified ");
+      }
+    });
+  };
   return (
     <tr className="border-b">
       <th></th>
@@ -33,13 +42,16 @@ const TabelRow = ({ property }) => {
         <p>${price?.end}</p>
       </td>
       <td>
+        {verification === "Verified" ? (
+          <button className="btn  btn-sm btn-disabled ">Verifed</button>
+        ) : (
+          <button onClick={handleVerify} className="btn btn-sm btn-error">
+            Verify
+          </button>
+        )}
         {
-            verification === "Verified"? 
-            <button className="btn  btn-sm btn-disabled ">Verifed</button>
-            :
-            <button onClick={handleVerify} className="btn btn-sm btn-error">Verify</button>
+            verification === "Verified" && ''
         }
-        <button className="btn btn-sm btn-warning mt-2">Reject</button>
       </td>
     </tr>
   );

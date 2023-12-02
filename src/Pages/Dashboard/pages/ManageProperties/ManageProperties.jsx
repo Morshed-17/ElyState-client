@@ -1,10 +1,14 @@
 import Heading from "../../../../components/Heading/Heading";
+import Loading from "../../../../components/Loading/Loading";
 import useProperties from "../../../../hooks/userProperties";
 import TabelRow from "./TabelRow";
 
 const ManageProperties = () => {
   const [properties, isLoading, refetch] = useProperties();
 
+  if(isLoading){
+    return <Loading/>
+  }
   return (
     <div>
       <Heading title="Manage Properties" />
@@ -25,7 +29,7 @@ const ManageProperties = () => {
             </thead>
             <tbody>
                 {
-                    properties?.data.map(property => <TabelRow key={property._id} property={property}/>)
+                    properties?.data.map(property => <TabelRow key={property._id} property={property} refetch={refetch}/>)
                 }
              
             </tbody>
