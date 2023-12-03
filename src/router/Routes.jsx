@@ -15,7 +15,9 @@ import AddedProperties from "../Pages/Dashboard/pages/AddedProperties/AddedPrope
 import UpdateProperty from "../Pages/Dashboard/pages/UpdateProperty/UpdateProperty";
 import ManageProperties from "../Pages/Dashboard/pages/ManageProperties/ManageProperties";
 import ManageUsers from "../Pages/Dashboard/pages/ManageUsers/ManageUsers";
-import Wishlist from "../Pages/Dashboard/pages/Wishlist/Wishlist";
+import Wishlist from "../Pages/Dashboard/pages/GuestWishlist/GuestWishlist";
+import GuestWishlist from "../Pages/Dashboard/pages/GuestWishlist/GuestWishlist";
+import MakeOffer from "../Pages/Dashboard/pages/MakeOffer/MakeOffer";
 
 const router = createBrowserRouter([
   {
@@ -50,8 +52,8 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: '/dashboard',
-        element: <h1>Hello Navigate through the menu to see content !</h1>
+        path: "/dashboard",
+        element: <h1>Hello Navigate through the menu to see content !</h1>,
       },
       {
         path: "my-profile",
@@ -65,7 +67,15 @@ const router = createBrowserRouter([
         path: "wishlist",
         element: (
           <PrivateRoute>
-            <Wishlist />
+            <GuestWishlist />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "make-offer/:id",
+        element: (
+          <PrivateRoute>
+            <MakeOffer />
           </PrivateRoute>
         ),
       },
