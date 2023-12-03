@@ -5,18 +5,26 @@ import Container from "../../components/Container/Container";
 import Card from "./Card";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Loading from "../../components/Loading/Loading";
 
 const AllProperties = () => {
   const axiosSecure = useAxiosSecure()
   const [properties, setProperties] = useState([])
+  const [loading, setLoading] = useState(false)
 
   useEffect(()=> {
+    setLoading(true)
     axiosSecure('/properties')
-    .then(res => setProperties(res.data))
-  }, [])
+    .then(res => {
+      setLoading(false)
+      setProperties(res.data)
+    })
+  }, [axiosSecure])
   
   
-
+  if(loading){
+    return <Loading/>
+  }
   return (
     <div>
       <Banner title="Properties" image={banner1} />

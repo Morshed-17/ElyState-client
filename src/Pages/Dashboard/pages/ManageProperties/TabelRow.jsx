@@ -26,6 +26,17 @@ const TabelRow = ({ property, refetch }) => {
       }
     });
   };
+  const handleReject = () => {
+    const status = {
+      verification: "Reject",
+    };
+    axiosSecure.patch(`/property/${_id}`, status).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        toast.success("Property Rejected ");
+      }
+    });
+  };
   return (
     <tr className="border-b">
       <th></th>
@@ -49,9 +60,23 @@ const TabelRow = ({ property, refetch }) => {
             Verify
           </button>
         )}
-        {
-            verification === "Verified" && ''
-        }
+        
+        {verification === "Verified" ? (
+          ""
+        ) : (
+          <>
+            {verification === "Reject" ? (
+              <button className="btn  btn-sm btn-disabled ">Rejected</button>
+            ) : (
+              <button
+                onClick={handleReject}
+                className="btn btn-sm btn-warning mt-2"
+              >
+                Reject
+              </button>
+            )}
+          </>
+        )}
       </td>
     </tr>
   );

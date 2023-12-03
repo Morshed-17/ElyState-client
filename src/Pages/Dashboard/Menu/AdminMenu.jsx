@@ -28,7 +28,7 @@ const AdminMenu = () => {
         </li>
         <li className="bg-white rounded-lg text-lg font-semibold">
           <NavLink
-            to="/dashboard/manage-users"
+            to="/dashboard/manage-reviews"
             className={({ isActive }) => (isActive ? "active" : "")}
           >
             <MdOutlineReviews />

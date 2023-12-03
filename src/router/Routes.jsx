@@ -14,6 +14,7 @@ import AddProperty from "../Pages/Dashboard/pages/AddProperty/AddProperty";
 import AddedProperties from "../Pages/Dashboard/pages/AddedProperties/AddedProperties";
 import UpdateProperty from "../Pages/Dashboard/pages/UpdateProperty/UpdateProperty";
 import ManageProperties from "../Pages/Dashboard/pages/ManageProperties/ManageProperties";
+import ManageUsers from "../Pages/Dashboard/pages/ManageUsers/ManageUsers";
 
 const router = createBrowserRouter([
   {
@@ -88,6 +89,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ManageProperties />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "manage-users",
+        element: (
+          <PrivateRoute>
+            <ManageUsers />
           </PrivateRoute>
         ),
       },
