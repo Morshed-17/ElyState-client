@@ -39,6 +39,7 @@ const AddProperty = () => {
     axiosSecure.post('/properties', property)
     .then(res => {
         toast.success("Property added successfully")
+        form.reset()
     })
     
 

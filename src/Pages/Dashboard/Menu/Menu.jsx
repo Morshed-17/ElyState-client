@@ -8,20 +8,22 @@ import { NavLink } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 
 const Menu = () => {
-  const axiosSecure = useAxiosSecure()
-  const [role, setRole] = useState(null)
-  const {user} = useAuth()
-  useEffect(()=> {
-    axiosSecure(`/user?email=${user?.email}`)
-    .then(res => setRole(res.data.role))
-
-  }, [])
+  const axiosSecure = useAxiosSecure();
+  const [role, setRole] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const { user } = useAuth();
+  useEffect(() => {
+    setLoading(true);
+    axiosSecure(`/user?email=${user?.email}`).then((res) => {
+      setRole(res.data.role);
+      setLoading(false);
+    });
+  }, []);
   return (
     <div className="mt-4">
       <h3 className="text-xl mb-4 font-semibold">Role: {role && role}</h3>
       <ul className="menu  w-full gap-3">
-      <li className="bg-white rounded-lg text-lg font-semibold">
-      
+        <li className="bg-white rounded-lg text-lg font-semibold">
           <NavLink
             to="/dashboard/my-profile"
             className={({ isActive }) => (isActive ? "active" : "")}
@@ -31,15 +33,9 @@ const Menu = () => {
           </NavLink>
         </li>
       </ul>
-        {
-          role === "Guest" && <GuestMenu/>
-        }
-        {
-          role === "Agent" && <AgentMenu/>
-        }
-        {
-          role === "Admin" && <AdminMenu/>
-        }
+      {role === "Guest" && <GuestMenu />}
+      {role === "Agent" && <AgentMenu />}
+      {role === "Admin" && <AdminMenu />}
     </div>
   );
 };

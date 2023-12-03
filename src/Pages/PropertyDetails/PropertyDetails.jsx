@@ -4,25 +4,31 @@ import Container from "../../components/Container/Container";
 import { GrFormLocation } from "react-icons/gr";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Loading from "../../components/Loading/Loading";
-
-
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast"
 const PropertyDetails = () => {
   const { id } = useParams();
+  const {user} = useAuth()
   const [property, setProperty] = useState({});
-  const axiosSecure = useAxiosSecure()
-  const [loading, setLoading] = useState(false)
-  
+  const axiosSecure = useAxiosSecure();
+  const [loading, setLoading] = useState(false);
+  const [exists, setExist] = useState(false)
+  const [role, setRole] = useState(null)
+
+
 
   useEffect(()=> {
-    setLoading(true)
-    axiosSecure(`/property/${id}`)
-    .then(res => 
-      {
-        setProperty(res.data)
-        setLoading(false)
-      })
-  }, [id, axiosSecure])
-  
+    axiosSecure(`/user?email=${user?.email}`)
+    .then(res => setRole(res.data.role))
+
+  }, [])
+  useEffect(() => {
+    setLoading(true);
+    axiosSecure(`/property/${id}`).then((res) => {
+      setProperty(res.data);
+      setLoading(false);
+    });
+  }, [id, axiosSecure]);
 
   const {
     _id,
@@ -36,8 +42,33 @@ const PropertyDetails = () => {
     description,
   } = property || {};
 
-  if(loading){
-    return <Loading/>
+  const handleAddToWishlist = () => {
+    const wishlist = {
+      user_email: user?.email,
+      property_id: _id,
+      image: image,
+      title: title,
+      location: location,
+      agent_name: agent_name,
+      agent_image: agent_image,
+      verification: verification,
+      price: price,
+      description: description,
+      
+    }
+    axiosSecure.post('/wishlist', wishlist)
+    .then(res => {
+      if(res.data.exists){
+        setExist(true)
+        return toast.error("Already exist")
+      }
+      toast.success("Added to wishlist")
+    })
+    
+  }
+
+  if (loading) {
+    return <Loading />;
   }
   return (
     <div className="mt-12  max-w-5xl mx-auto ">
@@ -60,7 +91,20 @@ const PropertyDetails = () => {
             </h3>
 
             <p>{description}</p>
-            <button className="btn btn-neutral my-6">Add To Wishlist</button>
+
+            {
+              role === "Guest" ? <button
+                onClick={handleAddToWishlist}
+                className="btn btn-neutral my-6"
+              >
+                Add To Wishlist
+              </button>
+              : 
+              <p onClick={() => {
+                toast.error("For Users Only")
+              }}  className="border btn my-6">Wishlist</p>
+            }
+            
           </div>
 
           <div>
@@ -71,10 +115,8 @@ const PropertyDetails = () => {
             </div>
           </div>
 
-
           <div></div>
         </div>
-        
       </Container>
     </div>
   );

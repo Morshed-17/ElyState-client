@@ -15,6 +15,7 @@ import AddedProperties from "../Pages/Dashboard/pages/AddedProperties/AddedPrope
 import UpdateProperty from "../Pages/Dashboard/pages/UpdateProperty/UpdateProperty";
 import ManageProperties from "../Pages/Dashboard/pages/ManageProperties/ManageProperties";
 import ManageUsers from "../Pages/Dashboard/pages/ManageUsers/ManageUsers";
+import Wishlist from "../Pages/Dashboard/pages/Wishlist/Wishlist";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyProfile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "wishlist",
+        element: (
+          <PrivateRoute>
+            <Wishlist />
           </PrivateRoute>
         ),
       },

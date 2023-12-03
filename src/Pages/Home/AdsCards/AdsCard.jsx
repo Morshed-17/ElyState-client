@@ -5,10 +5,9 @@ const AdsCard = ({ property }) => {
   return (
     <div className="card max-w-96 bg-base-100 border rounded-none">
       
-        <img
-          src={image}
-          alt="Shoes"
-        />
+      <div className="h-52">
+      <img className="w-full h-full object-cover" src={image} alt="prop" />
+      </div>
       
       <div className="card-body">
         <h2 className="card-title">

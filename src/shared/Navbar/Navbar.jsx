@@ -35,7 +35,7 @@ const Navbar = () => {
 
       <li>
         <NavLink
-          to="/dashboard/my-profile"
+          to="/dashboard"
           className={({ isActive }) =>
             isActive ? "font-bold text-green-600 underline" : ""
           }

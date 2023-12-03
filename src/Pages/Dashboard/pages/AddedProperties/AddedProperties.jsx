@@ -14,7 +14,7 @@ const AddedProperties = () => {
     return (
         <div>
             <Heading title="My Added Properties"/>
-            <div className="grid grid-cols-1 md:grid-cols-2 mt-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 mt-12 gap-4">
                 {
                     properties?.data?.map(property => <AddedCard key={property._id} property={property}/>)
                 }

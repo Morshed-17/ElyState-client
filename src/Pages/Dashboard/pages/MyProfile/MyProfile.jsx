@@ -1,16 +1,23 @@
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import useAuth from "../../../../hooks/useAuth";
+import Loading from "../../../../components/Loading/Loading";
 
 const MyProfile = () => {
   const axiosSecure = useAxiosSecure();
   const [role, setRole] = useState(null);
   const { user } = useAuth();
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
+    setLoading(true)
     axiosSecure(`/user?email=${user?.email}`).then((res) =>
-      setRole(res.data.role)
+    {setLoading(false)
+      setRole(res.data.role)}
     );
   }, []);
+  if(loading){
+    return <Loading/>
+  }
   if (role === "Guest") {
     return <h3 className="text-2xl">Nothing Special here</h3>;
   }
