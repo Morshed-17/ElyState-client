@@ -3,30 +3,67 @@ import Heading from "../../../../components/Heading/Heading";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { useParams } from "react-router-dom";
 import useAuth from "../../../../hooks/useAuth";
-
+import Loading from "../../../../components/Loading/Loading";
+import toast from "react-hot-toast";
 
 const MakeOffer = () => {
-    const {id} = useParams()
-    const axiosSecure = useAxiosSecure()
-    const [wishlist, setWishlist] = useState({})
-    const {user} = useAuth()
-    useEffect(() => {
-        axiosSecure(`/wishlist/${id}`)
-        .then(res => {
-            setWishlist(res.data)
-        })
-    }, [])
+  const { id } = useParams();
+  const axiosSecure = useAxiosSecure();
+  const [wishlist, setWishlist] = useState({});
+  const [loading, setLoading] = useState(false);
+  const { user } = useAuth();
+  useEffect(() => {
+    setLoading(true);
+    axiosSecure(`/wishlist/${id}`).then((res) => {
+      setLoading(false);
+      setWishlist(res.data);
+    });
+  }, []);
 
-    const { _id,title, location, image, price, verification, agent_name, description,agent_image } = wishlist || {};
+  const {
+    _id,
+    title,
+    location,
+    image,
+    price,
+    verification,
+    agent_name,
+    description,
+    agent_image,
+  } = wishlist || {};
 
-    return (
-        <div>
-            <Heading title="Make an offer"/>
-            <div>
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const offerPrice = form.offerPrice.value
+    const offer = {
+      title: title,
+      image: image,
+      location: location,
+      buyer_email: user?.email,
+      buyer_name: user?.displayName,
+      offer_price: offerPrice,
+      status: "Pending"
+
+    };
+    axiosSecure.post("/offers", offer)
+    .then(res => {
+        console.log(res.data);
+        toast.success("Offer Successfuly sent")
+    })
+  };
+
+  if (loading) {
+    return <Loading />;
+  }
+  return (
+    <div>
+      <Heading title="Make an offer" />
+      <div>
         <div className="hero ">
           <div className="hero-content flex-col ">
             <div className="card shrink-0 shadow-2xl  bg-base-100 mt-6">
-              <form  className="card-body  max-w-7xl">
+              <form onSubmit={handleSubmit} className="card-body  max-w-7xl">
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Title</span>
@@ -55,12 +92,13 @@ const MakeOffer = () => {
                     required
                   />
                 </div>
-                
+
                 <div className="form-control ">
                   <label className="label">
                     <span className="label-text">Property Description</span>
                   </label>
                   <textarea
+                    rows={7}
                     disabled
                     name="description"
                     className="input input-bordered h-fit"
@@ -98,33 +136,32 @@ const MakeOffer = () => {
                   </div>
                 </div>
                 <div className="form-control">
-                    <label className="label">
-                      <span className="label-text">Make Offer Between ${price?.start} - ${price?.end}</span>
-                    </label>
-                    <input
-                      name="minPrice"
-                      type="number"
-                      placeholder="Write your offer."
-                      
-                      min={price?.start}
-                      max={price?.max}
-                      className="input input-bordered"
-                      required
-                    />
-                  </div>
-                
+                  <label className="label">
+                    <span className="label-text">
+                      Make Offer Between ${price?.start} - ${price?.end}
+                    </span>
+                  </label>
+                  <input
+                    name="offerPrice"
+                    type="number"
+                    placeholder="Write your offer."
+                    min={price?.start}
+                    max={price?.max}
+                    className="input input-bordered"
+                    required
+                  />
+                </div>
+
                 <div className="form-control mt-6">
-                  <button className="btn btn-primary">Add</button>
+                  <button className="btn btn-primary">Send Offer</button>
                 </div>
               </form>
             </div>
           </div>
         </div>
       </div>
-
-
-        </div>
-    );
+    </div>
+  );
 };
 
 export default MakeOffer;
