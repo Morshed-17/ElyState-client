@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Heading from "../../../../components/Heading/Heading";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAuth from "../../../../hooks/useAuth";
 import Loading from "../../../../components/Loading/Loading";
 import toast from "react-hot-toast";
@@ -11,6 +11,7 @@ const MakeOffer = () => {
   const axiosSecure = useAxiosSecure();
   const [wishlist, setWishlist] = useState({});
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate()
   const { user } = useAuth();
   useEffect(() => {
     setLoading(true);
@@ -29,6 +30,7 @@ const MakeOffer = () => {
     verification,
     agent_name,
     description,
+    agent_email,
     agent_image,
   } = wishlist || {};
 
@@ -42,7 +44,9 @@ const MakeOffer = () => {
       location: location,
       buyer_email: user?.email,
       buyer_name: user?.displayName,
-      offer_price: offerPrice,
+      agent_name: agent_name,
+      agent_email: agent_email,
+      offer_price: parseFloat(offerPrice),
       status: "Pending"
 
     };
@@ -50,6 +54,7 @@ const MakeOffer = () => {
     .then(res => {
         console.log(res.data);
         toast.success("Offer Successfuly sent")
+        navigate('')
     })
   };
 

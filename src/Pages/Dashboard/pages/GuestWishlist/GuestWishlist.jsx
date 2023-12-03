@@ -16,7 +16,7 @@ const [wishlist, isLoading, refetch] = useWishlist()
       <Heading title="My Wishlist" />
       <Container>
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2  gap-6">
-            {wishlist?.data?.filter(property => property.verification === 'Verified').map(property => <GuestWishCard key={property.title} property={property} refetch={refetch}></GuestWishCard>)}
+            {wishlist?.data.map(property => <GuestWishCard key={property.title} property={property} refetch={refetch}></GuestWishCard>)}
         </div>
       </Container>
       

@@ -18,6 +18,8 @@ import ManageUsers from "../Pages/Dashboard/pages/ManageUsers/ManageUsers";
 import Wishlist from "../Pages/Dashboard/pages/GuestWishlist/GuestWishlist";
 import GuestWishlist from "../Pages/Dashboard/pages/GuestWishlist/GuestWishlist";
 import MakeOffer from "../Pages/Dashboard/pages/MakeOffer/MakeOffer";
+import Bought from "../Pages/Dashboard/pages/Bought/Bought";
+import RecProperties from "../Pages/Dashboard/pages/RecProperties/RecProperties";
 
 const router = createBrowserRouter([
   {
@@ -80,6 +82,14 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "bought",
+        element: (
+          <PrivateRoute>
+            <Bought />
+          </PrivateRoute>
+        ),
+      },
+      {
         path: "add-property",
         element: (
           <PrivateRoute>
@@ -92,6 +102,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AddedProperties />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "rec-properties",
+        element: (
+          <PrivateRoute>
+            <RecProperties />
           </PrivateRoute>
         ),
       },

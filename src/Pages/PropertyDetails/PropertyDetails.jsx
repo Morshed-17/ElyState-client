@@ -39,6 +39,7 @@ const PropertyDetails = () => {
     verification,
     agent_name,
     agent_image,
+    agent_email,
     description,
   } = property || {};
 
@@ -51,6 +52,7 @@ const PropertyDetails = () => {
       location: location,
       agent_name: agent_name,
       agent_image: agent_image,
+      agent_email: agent_email,
       verification: verification,
       price: price,
       description: description,
