@@ -9,9 +9,9 @@ import { CgProfile } from "react-icons/cg";
 
 const Menu = () => {
   const axiosSecure = useAxiosSecure();
-  const [role, setRole] = useState(null);
   const [loading, setLoading] = useState(false);
   const { user } = useAuth();
+  const [role, setRole] = useState(null);
   useEffect(() => {
     setLoading(true);
     axiosSecure(`/user?email=${user?.email}`).then((res) => {

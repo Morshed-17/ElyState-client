@@ -1,8 +1,8 @@
-const Review = ({ review }) => {
+const ReviewCard = ({ review }) => {
   return (
-    <div className="card card-compact text-center py-4">
-      <div className="card-body ">
-        <div className="flex gap-3 justify-center ">
+    <div className="card card-compact border shadow-lg ">
+      <div className="card-body">
+        <div className="flex gap-3 ">
           <img
             className="avatar h-16 w-16 object-cover rounded-2xl"
             src={review.reviewer_image}
@@ -17,4 +17,4 @@ const Review = ({ review }) => {
   );
 };
 
-export default Review;
+export default ReviewCard;

@@ -1,20 +1,10 @@
 [
-  {
+  { "property_id": "dfjkal",
     "name": "Kazi golam Morshed",
+    "email": "mto@gmail.com",
     "image": "https://webdevmorshed.com/wp-content/uploads/2023/04/PXL_20230312_084333880.PORTRAIT1_-717x1024-1.jpg",
     "description": "I recently had the pleasure of staying at this fantastic property and it exceeded all my expectations. The location is superb – nestled in a quiet neighborhood yet conveniently close to the city center.",
     "title": "1Liberty Village Community"
-  },
-  {
-    "name": "Kazi golam Morshed",
-    "image": "https://webdevmorshed.com/wp-content/uploads/2023/04/PXL_20230312_084333880.PORTRAIT1_-717x1024-1.jpg",
-    "description": "I recently had the pleasure of staying at this fantastic property and it exceeded all my expectations. The location is superb – nestled in a quiet neighborhood yet conveniently close to the city center.",
-    "title": "2Liberty Village Community"
-  },
-  {
-    "name": "Kazi golam Morshed",
-    "image": "https://webdevmorshed.com/wp-content/uploads/2023/04/PXL_20230312_084333880.PORTRAIT1_-717x1024-1.jpg",
-    "description": "I recently had the pleasure of staying at this fantastic property and it exceeded all my expectations. The location is superb – nestled in a quiet neighborhood yet conveniently close to the city center.",
-    "title": "3Liberty Village "
   }
+  
 ]

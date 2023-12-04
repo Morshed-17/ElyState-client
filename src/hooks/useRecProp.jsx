@@ -2,10 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "./useAuth";
 import useAxiosSecure from "./useAxiosSecure";
 
-
 const useRecProp = () => {
-    const axiosSecure = useAxiosSecure();
-    const {user} = useAuth()
+  const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
   const {
     data: properties,
     isLoading,

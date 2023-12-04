@@ -9,18 +9,23 @@ import { useEffect, useState } from "react";
 import Heading from "../../../components/Heading/Heading";
 import Review from "./Review";
 import Container from "../../../components/Container/Container";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
+  
+  const axiosSecure = useAxiosSecure()
   useEffect(() => {
-    fetch("reviews.json")
-      .then((res) => res.json())
-      .then((data) => setReviews(data));
-  }, []);
+   axiosSecure(`/reviews`)
+   .then(res => setReviews(res.data))
+  }, [])
   return (
     <Container>
-      <div className="mt-12">
+      <div className="my-12">
         <Heading title={"Reviews"} subTitle={"What Our Users Says"} />
+        <div className="mt-12">
         <Swiper
           pagination={{
             dynamicBullets: true,
@@ -38,6 +43,7 @@ const Reviews = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+        </div>
       </div>
     </Container>
   );
