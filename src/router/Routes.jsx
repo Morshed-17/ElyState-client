@@ -20,6 +20,8 @@ import GuestWishlist from "../Pages/Dashboard/pages/GuestWishlist/GuestWishlist"
 import MakeOffer from "../Pages/Dashboard/pages/MakeOffer/MakeOffer";
 import Bought from "../Pages/Dashboard/pages/Bought/Bought";
 import RecProperties from "../Pages/Dashboard/pages/RecProperties/RecProperties";
+import PayNow from "../Pages/Dashboard/pages/Bought/PayNow";
+import SoldProperties from "../Pages/Dashboard/pages/SoldPropeties/SoldProperties";
 
 const router = createBrowserRouter([
   {
@@ -90,6 +92,14 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "pay-now/:id",
+        element: (
+          <PrivateRoute>
+            <PayNow />
+          </PrivateRoute>
+        ),
+      },
+      {
         path: "add-property",
         element: (
           <PrivateRoute>
@@ -110,6 +120,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <RecProperties />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "sold-properties",
+        element: (
+          <PrivateRoute>
+            <SoldProperties />
           </PrivateRoute>
         ),
       },
