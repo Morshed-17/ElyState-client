@@ -22,6 +22,8 @@ import Bought from "../Pages/Dashboard/pages/Bought/Bought";
 import RecProperties from "../Pages/Dashboard/pages/RecProperties/RecProperties";
 import PayNow from "../Pages/Dashboard/pages/Bought/PayNow";
 import SoldProperties from "../Pages/Dashboard/pages/SoldPropeties/SoldProperties";
+import MyReviews from "../Pages/Dashboard/pages/MyReviews/MyReviews";
+import ManageReview from "../Pages/Dashboard/pages/MangeReview/ManageReview";
 
 const router = createBrowserRouter([
   {
@@ -92,6 +94,14 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "my-reviews",
+        element: (
+          <PrivateRoute>
+            <MyReviews />
+          </PrivateRoute>
+        ),
+      },
+      {
         path: "pay-now/:id",
         element: (
           <PrivateRoute>
@@ -152,6 +162,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ManageUsers />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "manage-reviews",
+        element: (
+          <PrivateRoute>
+            <ManageReview />
           </PrivateRoute>
         ),
       },

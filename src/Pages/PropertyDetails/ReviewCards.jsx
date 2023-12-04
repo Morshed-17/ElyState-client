@@ -5,18 +5,13 @@ import ReviewCard from "./ReviewCard";
 
 
 const ReviewCards = ({id}) => {
-    const [reviews, setReviews] = useState([])
-    
-   const axiosSecure = useAxiosSecure()
-   useEffect(() => {
-    axiosSecure(`/reviews/${id}`)
-    .then(res => setReviews(res.data))
-   }, [])
+    // const [reviews, setReviews] = useState([])
+    const [reviews] = useReviews(id)
    
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 mt-12 gap-6">
             {
-                reviews?.map(review => <ReviewCard key={review._id} review={review}/>)
+                reviews?.data?.map(review => <ReviewCard key={review._id} review={review}/>)
             }
         </div>
     );

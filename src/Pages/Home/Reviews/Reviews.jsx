@@ -21,6 +21,7 @@ const Reviews = () => {
    axiosSecure(`/reviews`)
    .then(res => setReviews(res.data))
   }, [])
+  
   return (
     <Container>
       <div className="my-12">

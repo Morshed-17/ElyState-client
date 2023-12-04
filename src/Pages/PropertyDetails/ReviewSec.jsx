@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import useReviews from "../../hooks/useReviews";
 
 const ReviewSec = ({ property }) => {
   const { user } = useAuth();
@@ -16,14 +17,15 @@ const ReviewSec = ({ property }) => {
       setLoading(false);
     });
   }, []);
-  const { _id, title } = property || {};
-
+  const { _id, title, agent_name } = property || {};
+  const [, , refetch] = useReviews(_id);
   const handleSubmit = (e) => {
     e.preventDefault();
-    const form = e.target
+    const form = e.target;
     const review = {
       property_id: _id,
       title: title,
+      agent_name: agent_name,
       reviewer_name: user?.displayName,
       reviewer_email: user?.email,
       reviewer_image: user?.photoURL,
@@ -32,8 +34,9 @@ const ReviewSec = ({ property }) => {
 
     axiosSecure.post("/reviews", review).then((res) => {
       console.log(res.data);
+      refetch()
       toast.success("Review Submitted");
-      form.reset()
+      form.reset();
     });
   };
   return (
