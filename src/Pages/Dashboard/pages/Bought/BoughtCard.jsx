@@ -30,8 +30,15 @@ const BoughtCard = ({property, refetch}) => {
             <p>Agent: {agent_name}</p>
           </div>
           </div>
-          <div>
-            <button  className="btn btn-error btn-sm text-white">{status}</button>
+          <div> 
+            <p className="font-semibold">Offer: {status}</p>
+            {
+                status === "Accepted" &&
+                <button  className="btn btn-warning btn-sm mt-2">Pay Now</button>
+                
+                
+            }
+            
           </div>
         </div>
       </div>

@@ -14,19 +14,26 @@ const axiosSecure = axios.create({
 const useAxiosSecure = () => {
     const {logOut} = useAuth()
     const navigate = useNavigate()
-    axiosSecure.interceptors.response.use(res => {
-        return res;
 
-    }, error => {
-        console.log('interceptor error', error.response);
-        // if(error.response.status === 401 || error.response.status === 403){
-        //     console.log('logout the user');
-        //     logOut()
-        //     .then(() => {
-        //         navigate('/login')
-        //     })
-        //     .catch(error => console.log(error))
-        // }
+    axiosSecure.interceptors.request.use(function(config){
+        const token = localStorage.getItem('access-token')
+        console.log('Request stopped by interceptors', token);
+        config.headers.authorization = `Bearer ${token}`
+        return config
+    }, function(error){
+        return Promise.reject(error)
+    })
+
+    axiosSecure.interceptors.response.use(function(response){
+        return response
+    }, async (error) =>{
+        const status = error.response.status;
+        console.log('status error in the interceptor', status);
+        if(status === 401 || status === 403){
+            await logOut()
+            navigate('/login')
+        }
+        return Promise.reject(error)
     })
     return axiosSecure
 };

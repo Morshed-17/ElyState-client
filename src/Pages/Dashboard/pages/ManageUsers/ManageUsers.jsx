@@ -6,7 +6,6 @@ import UserTable from "./UserTable";
 
 const ManageUsers = () => {
     const [users, isLoading, refetch] = useUsers()
-    console.log(users);
     
     if(isLoading){
         return <Loading/>

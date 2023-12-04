@@ -1,5 +1,6 @@
 import Container from "../../../../components/Container/Container";
 import Heading from "../../../../components/Heading/Heading";
+import Loading from "../../../../components/Loading/Loading";
 import useWishlist from "../../../../hooks/useWishlist";
 import Card from "../../../AllProperties/Card";
 import GuestWishCard from "./GuestWishCard";
@@ -10,7 +11,9 @@ const GuestWishlist = () => {
     
 const [wishlist, isLoading, refetch] = useWishlist()
 
-
+    if(isLoading){
+        return <Loading/>
+    }
   return (
     <div>
       <Heading title="My Wishlist" />

@@ -5,6 +5,7 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import useOffers from "../../../../hooks/useOffers";
 import GuestWishCard from "../GuestWishlist/GuestWishCard";
 import BoughtCard from "./BoughtCard";
+import Loading from "../../../../components/Loading/Loading";
 
 
 const Bought = () => {
@@ -12,6 +13,9 @@ const Bought = () => {
     const {user} = useAuth()
     const [offers, isLoading, refetch] = useOffers()
     console.log(offers?.data);
+    if(isLoading){
+        return <Loading/>
+    }
     return (
         <div>
             <Heading title="Bought Properties"/>

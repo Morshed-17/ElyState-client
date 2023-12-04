@@ -9,7 +9,7 @@ const useUsers = () => {
       refetch,
     } = useQuery({
       queryKey: ["users"],
-      queryFn: () => axiosSecure(`/users`),
+      queryFn: () => axiosSecure.get(`/users`),
     });
   
     return [users, isLoading, refetch];
