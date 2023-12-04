@@ -1,8 +1,11 @@
-# React + Vite
+#### Live: https://elystate-9ee22.web.app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Features
 
-Currently, two official plugins are available:
+- Users can seamlessly Properties.
+- Users has different role. 
+- Types of users Admin> Agent> Guest.
+- Admin can control both Agent and Guest activity.
+- Agent can handle various guests requests.
+- website is scure.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
