@@ -24,7 +24,7 @@ const AdsCards = () => {
 
   return (
     <div className="mt-12">
-      <Container>
+      <Container> 
         <Heading title={"Featured Properties"} subTitle={""} />
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {
@@ -32,7 +32,9 @@ const AdsCards = () => {
             }
         </div>
       </Container>
+      
     </div>
+
   );
 };
 

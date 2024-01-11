@@ -2,7 +2,7 @@
 
 ### Features
 
-- Users can seamlessly Properties.
+- Users can seamlessly Add Properties.
 - Users has different role. 
 - Types of users Admin> Agent> Guest.
 - Admin can control both Agent and Guest activity.

@@ -8,6 +8,7 @@ import useAuth from "./useAuth";
 const axiosSecure = axios.create({
 
     baseURL: 'https://ely-state-server.vercel.app',
+    // baseURL: 'http://localhost:5000',
     withCredentials: true
 })
 
@@ -17,7 +18,6 @@ const useAxiosSecure = () => {
 
     axiosSecure.interceptors.request.use(function(config){
         const token = localStorage.getItem('access-token')
-        console.log('Request stopped by interceptors', token);
         config.headers.authorization = `Bearer ${token}`
         return config
     }, function(error){
